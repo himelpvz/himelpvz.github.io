@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Himel Parvez | @himelpvz</title>
+  <style>
+    :root {
+      --bg-gradient: radial-gradient(circle at top left, #00f5a0, #00d9f5, #17141d);
+      --glass-bg: rgba(13, 17, 23, 0.8);
+      --accent: #00f5a0;
+      --accent-soft: rgba(0, 245, 160, 0.25);
+      --text-main: #f5f5f5;
+      --text-muted: #a3a3a3;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.45);
+      --radius-xl: 24px;
+      --transition-fast: 0.25s ease;
+      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Roboto", "Segoe UI", sans-serif;
+      --card-blur: blur(24px);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: var(--font-main);
+      background: #05050a;
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      padding: 24px 16px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: var(--bg-gradient);
+      opacity: 0.3;
+      filter: blur(40px);
+      z-index: -2;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 10% 20%, rgba(0, 245, 160, 0.08) 0, transparent 55%),
+        radial-gradient(circle at 90% 80%, rgba(0, 217, 245, 0.12) 0, transparent 55%);
+      z-index: -1;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 1080px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.25fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 860px) {
+      .page {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .card {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(9, 9, 15, 0.96));
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: var(--card-blur);
+      padding: 24px 24px 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(0, 245, 160, 0.08), transparent 55%);
+      opacity: 0;
+      transition: opacity var(--transition-fast);
+      pointer-events: none;
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card + .card {
+      margin-top: 18px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+      padding: 6px 13px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: radial-gradient(circle at top left, rgba(0, 245, 160, 0.1), transparent 55%);
+      margin-bottom: 14px;
+    }
+
+    .pill-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 10px rgba(0, 245, 160, 0.8);
+    }
+
+    h1 {
+      font-size: clamp(32px, 4vw, 40px);
+      letter-spacing: -0.04em;
+      margin-bottom: 6px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+
+    h1 span.accent {
+      color: var(--accent);
+      text-shadow: 0 0 16px rgba(0, 245, 160, 0.7);
+    }
+
+    h2 {
+      font-size: 18px;
+      margin-bottom: 8px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    p {
+      color: #d4d4d8;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .tagline {
+      font-size: 14px;
+      color: #e4e4e7;
+      margin-bottom: 18px;
+    }
+
+    .typing-wrapper {
+      position: relative;
+      display: inline-block;
+      margin-top: 8px;
+      margin-bottom: 22px;
+    }
+
+    .typing {
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 2px solid var(--accent);
+      font-size: 14px;
+      animation: typing 4.2s steps(40, end) infinite,
+        caret 0.7s step-end infinite;
+      max-width: 0;
+    }
+
+    @keyframes typing {
+      0% {
+        max-width: 0;
+      }
+      45% {
+        max-width: 260px;
+      }
+      55% {
+        max-width: 260px;
+      }
+      100% {
+        max-width: 0;
+      }
+    }
+
+    @keyframes caret {
+      0%, 100% {
+        border-color: transparent;
+      }
+      50% {
+        border-color: var(--accent);
+      }
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 9px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      color: var(--text-main);
+      text-decoration: none;
+      cursor: pointer;
+      overflow: hidden;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast),
+        border-color var(--transition-fast), background var(--transition-fast);
+      background: radial-gradient(circle at 0 0, rgba(0, 245, 160, 0.22), rgba(15, 23, 42, 0.96));
+    }
+
+    .btn span.dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 8px rgba(0, 245, 160, 0.8);
+    }
+
+    .btn.primary {
+      border-color: rgba(0, 245, 160, 0.7);
+      box-shadow: 0 0 22px rgba(0, 245, 160, 0.18);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px) translateZ(0);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.5);
+      border-color: var(--accent);
+      background: radial-gradient(circle at 0 0, rgba(0, 245, 160, 0.3), rgba(15, 23, 42, 0.96));
+    }
+
+    .btn-ghost {
+      background: rgba(15, 23, 42, 0.85);
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .meta-pill {
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .section {
+      margin-top: 10px;
+    }
+
+    .section + .section {
+      margin-top: 18px;
+    }
+
+    .section-title {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .list {
+      list-style: none;
+      display: grid;
+      gap: 8px;
+      font-size: 14px;
+    }
+
+    .list li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #e4e4e7;
+    }
+
+    .list li span.bullet {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #ffffff, #00f5a0);
+      box-shadow: 0 0 12px rgba(0, 245, 160, 0.9);
+    }
+
+    .link {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(0, 245, 160, 0.4);
+      padding-bottom: 1px;
+      transition: border-color var(--transition-fast), color var(--transition-fast),
+        text-shadow var(--transition-fast);
+    }
+
+    .link:hover {
+      border-color: rgba(0, 245, 160, 0.9);
+      color: #a6ffe0;
+      text-shadow: 0 0 8px rgba(0, 245, 160, 0.7);
+    }
+
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .skill-pill {
+      font-size: 11px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: radial-gradient(circle at top left, rgba(0, 245, 160, 0.08), rgba(15, 23, 42, 0.96));
+      color: #e5e7eb;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .cluster {
+      display: grid;
+      gap: 10px;
+    }
+
+    .project {
+      padding: 10px 12px;
+      border-radius: 16px;
+      background: radial-gradient(circle at 0 0, rgba(0, 245, 160, 0.08), rgba(15, 23, 42, 0.96));
+      border: 1px solid rgba(148, 163, 184, 0.3);
+    }
+
+    .project-title {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .project-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .project-tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .project-tag {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      color: #cbd5f5;
+      background: rgba(15, 23, 42, 0.95);
+    }
+
+    .side-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .side-card-header h2 {
+      margin-bottom: 0;
+      font-size: 13px;
+    }
+
+    .status-dot {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .status-dot span.dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.9);
+    }
+
+    .stats-stack {
+      display: grid;
+      gap: 10px;
+    }
+
+    .stats-item {
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      background: rgba(15, 23, 42, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+    }
+
+    .stats-item img {
+      width: 100%;
+      display: block;
+    }
+
+    footer {
+      margin-top: 18px;
+      font-size: 11px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    footer span.heart {
+      color: var(--accent);
+      filter: drop-shadow(0 0 8px rgba(0, 245, 160, 0.8));
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <!-- LEFT COLUMN -->
+    <section>
+      <div class="card">
+        <div class="pill">
+          <span class="pill-dot"></span>
+          @himelpvz · Developer & Creator
+        </div>
+
+        <h1>
+          Himel <span class="accent">Parvez</span>
+        </h1>
+        <p class="subtitle">Builder of tools, bots, and tiny experiments that (sometimes) become useful.</p>
+
+        <p class="tagline">
+          I love coding, automation, and exploring new ideas in public through
+          <a href="https://github.com/himelpvz" class="link" target="_blank" rel="noopener">GitHub</a>
+          and
+          <a href="https://t.me/hpsstuffs" class="link" target="_blank" rel="noopener">Telegram</a>.
+        </p>
+
+        <div class="typing-wrapper">
+          <span class="typing">
+            &gt; currently hacking on bots, utilities & automation scripts...
+          </span>
+        </div>
+
+        <div class="hero-actions">
+          <a class="btn primary" href="https://github.com/himelpvz" target="_blank" rel="noopener">
+            <span class="dot"></span>
+            <span>Visit GitHub Profile</span>
+          </a>
+          <a class="btn btn-ghost" href="https://t.me/Himel_Pvz" target="_blank" rel="noopener">
+            <span>Message me on Telegram</span>
+          </a>
+        </div>
+
+        <div class="meta-row">
+          <span class="meta-pill">GitHub: @himelpvz</span>
+          <span class="meta-pill">Telegram: @Himel_Pvz</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="section">
+          <div class="section-title">About</div>
+          <p>
+            Hi, I’m <strong>Himel Parvez</strong> — a developer who enjoys building
+            small but powerful things: bots, automation tools, scripts, and random side
+            projects that help people save time or learn something new.
+          </p>
+        </div>
+
+        <div class="section">
+          <div class="section-title">What I like to build</div>
+          <ul class="list">
+            <li>
+              <span class="bullet"></span>
+              <span>Telegram utilities, bots, and helpers</span>
+            </li>
+            <li>
+              <span class="bullet"></span>
+              <span>Automation scripts for everyday tasks</span>
+            </li>
+            <li>
+              <span class="bullet"></span>
+              <span>Security & performance experiments</span>
+            </li>
+            <li>
+              <span class="bullet"></span>
+              <span>Tools that are simple, fast, and easy to share</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Tech Stack & Tools</div>
+          <div class="skills-grid">
+            <span class="skill-pill">Python</span>
+            <span class="skill-pill">JavaScript</span>
+            <span class="skill-pill">Node.js</span>
+            <span class="skill-pill">HTML & CSS</span>
+            <span class="skill-pill">Git & GitHub</span>
+            <span class="skill-pill">Linux</span>
+            <span class="skill-pill">Bash / Shell</span>
+            <span class="skill-pill">VS Code</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="section">
+          <div class="section-title">Featured ideas & projects</div>
+          <div class="cluster">
+            <article class="project">
+              <div class="project-title">Telegram Utilities & Bots</div>
+              <div class="project-sub">
+                Small tools to automate tasks, manage channels, and make Telegram more powerful.
+              </div>
+              <div class="project-tag-row">
+                <span class="project-tag">Telegram</span>
+                <span class="project-tag">Bots</span>
+                <span class="project-tag">Automation</span>
+              </div>
+            </article>
+
+            <article class="project">
+              <div class="project-title">Automation Scripts</div>
+              <div class="project-sub">
+                Scripts for system tweaks, monitoring, and daily workflows — because repetitive work is boring.
+              </div>
+              <div class="project-tag-row">
+                <span class="project-tag">CLI</span>
+                <span class="project-tag">Linux</span>
+                <span class="project-tag">Productivity</span>
+              </div>
+            </article>
+
+            <article class="project">
+              <div class="project-title">Security & Performance Experiments</div>
+              <div class="project-sub">
+                Mini projects to explore performance tuning, basic security checks, and optimization tricks.
+              </div>
+              <div class="project-tag-row">
+                <span class="project-tag">Security</span>
+                <span class="project-tag">Performance</span>
+                <span class="project-tag">Experiments</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RIGHT COLUMN -->
+    <aside>
+      <div class="card">
+        <div class="side-card-header">
+          <h2>Connect · Telegram</h2>
+          <div class="status-dot">
+            <span class="dot"></span>
+            <span>Active</span>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Personal</div>
+          <p>
+            💬 DM me on Telegram:
+            <a href="https://t.me/Himel_Pvz" class="link" target="_blank" rel="noopener">@Himel_Pvz</a>
+          </p>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Channel</div>
+          <p>
+            📡 Main channel:
+            <a href="https://t.me/hpsstuffs" class="link" target="_blank" rel="noopener">HP's Stuffs</a><br />
+            I share updates, tools, experiments, and random dev stuff here.
+          </p>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Discussion Group</div>
+          <p>
+            💭 Join the community:
+            <a href="https://t.me/hpsstuffs_dis" class="link" target="_blank" rel="noopener">HP's Stuffs Discussion</a><br />
+            Hang out, ask questions, and discuss projects or ideas.
+          </p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="side-card-header">
+          <h2>GitHub Highlights</h2>
+          <span style="font-size:11px; color:var(--text-muted);">Live Stats</span>
+        </div>
+        <div class="stats-stack">
+          <div class="stats-item">
+            <img
+              src="https://github-readme-stats.vercel.app/api?username=himelpvz&show_icons=true&theme=tokyonight"
+              alt="GitHub Stats for himelpvz"
+            />
+          </div>
+          <div class="stats-item">
+            <img
+              src="https://github-readme-streak-stats.herokuapp.com/?user=himelpvz&theme=tokyonight"
+              alt="GitHub Streak for himelpvz"
+            />
+          </div>
+          <div class="stats-item">
+            <img
+              src="https://github-readme-stats.vercel.app/api/top-langs/?username=himelpvz&layout=compact&theme=tokyonight"
+              alt="Top Languages for himelpvz"
+            />
+          </div>
+        </div>
+
+        <footer>
+          Built with <span class="heart">◆</span> by Himel Parvez ·
+          <a href="https://github.com/himelpvz" class="link" target="_blank" rel="noopener">@himelpvz</a>
+        </footer>
+      </div>
+    </aside>
+  </main>
+</body>
+</html>
