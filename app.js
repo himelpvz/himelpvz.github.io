@@ -27,7 +27,7 @@ function initTheme() {
     window.matchMedia &&
     window.matchMedia("(prefers-color-scheme: dark)").matches;
 
-  const initial = saved || (prefersDark ? "dark" : "dark");
+  const initial = saved || (prefersDark ? "dark" : "dark"); // default dark
   applyTheme(initial);
 }
 
