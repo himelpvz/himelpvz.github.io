@@ -42,42 +42,79 @@ html,body{
   box-sizing:border-box;
 }
 
-/* Profile card */
+/* =========================
+   TOP BAR (Portfolio + buttons)
+   ========================= */
+
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:0.75rem;
+  margin-top:0.25rem;
+}
+
+.topbar-title{
+  margin:0;
+  font-size:1.25rem;
+  font-weight:700;
+}
+
+.topbar-actions{
+  display:flex;
+  gap:0.5rem;
+}
+
+.topbar-btn{
+  padding:0.45rem 0.9rem;
+  border-radius:999px;
+  border:1px solid var(--card-border);
+  background:var(--bg-elevated);
+  color:var(--text);
+  font-size:0.9rem;
+  cursor:pointer;
+  min-height:40px;
+}
+
+/* =========================
+   PROFILE CARD (new layout)
+   ========================= */
+
 .profile-card{
   display:flex;
   flex-direction:column;
-  gap:1rem;
-  align-items:stretch;
+  gap:0.9rem;
+  align-items:center;
+  text-align:center;
   background:var(--bg-elevated);
   border-radius:var(--radius);
-  padding:1rem;
+  padding:1.25rem 1.1rem 1.3rem;
   box-shadow:var(--shadow);
   border:1px solid var(--card-border);
-  margin-top:1rem;
+  margin-top:0.9rem;
 }
 
-/* layout for larger screens */
+/* for larger screens keep it centered but slightly wider */
 @media(min-width:720px){
   .profile-card{
-    flex-direction:row;
-    align-items:center;
-    justify-content:space-between;
-    padding:1.25rem;
+    max-width:520px;
+    margin:0.9rem auto 0;
   }
 }
 
-/* left area */
+/* avatar block */
 .profile-left{
   display:flex;
-  gap:1rem;
+  flex-direction:column;
   align-items:center;
+  gap:0.6rem;
 }
 
 /* avatar */
 .avatar-wrap{
   position:relative;
-  width:72px;
-  height:72px;
+  width:92px;
+  height:92px;
   border-radius:50%;
   padding:6px;
   background: linear-gradient(135deg,var(--accent), var(--accent-strong));
@@ -96,23 +133,34 @@ html,body{
   object-fit:cover;
 }
 
-/* info */
+/* name / username */
 .profile-info h1{
-  font-size:1.05rem;
+  font-size:1.2rem;
   margin:0;
   letter-spacing:0.2px;
+  font-weight:700;
 }
 
-.muted{ color:var(--muted); margin:0.25rem 0; font-size:0.9rem; }
+.muted{
+  color:var(--muted);
+  margin:0.2rem 0 0;
+  font-size:0.9rem;
+}
 
-.bio{ margin-top:0.25rem; font-size:0.95rem; }
+/* we keep .bio but you can simply omit it in HTML */
+.bio{
+  margin-top:0.25rem;
+  font-size:0.95rem;
+}
 
+/* meta row (location / blog) – optional */
 .meta-row{
   display:flex;
   gap:0.5rem;
   flex-wrap:wrap;
   margin-top:0.5rem;
   align-items:center;
+  justify-content:center;
 }
 
 .meta-chip{
@@ -123,16 +171,17 @@ html,body{
   color:var(--muted);
 }
 
-/* stats row */
+/* stats row: single compact line */
 .stats-row{
   display:flex;
-  gap:0.75rem;
+  gap:0.9rem;
   margin-top:0.6rem;
   align-items:center;
+  justify-content:center;
 }
 
 .stat{
-  text-align:left;
+  text-align:center;
   padding:0.25rem 0.5rem;
 }
 
@@ -148,12 +197,11 @@ html,body{
   color:var(--muted);
 }
 
-/* actions */
+/* actions: ONLY GitHub button in card */
 .profile-actions{
+  margin-top:0.7rem;
   display:flex;
-  gap:0.75rem;
-  align-items:center;
-  justify-content:flex-end;
+  justify-content:center;
 }
 
 .action-buttons{
@@ -162,6 +210,7 @@ html,body{
   align-items:center;
 }
 
+/* generic buttons (can reuse for topbar if you want) */
 .btn{
   padding:0.5rem 0.8rem;
   border-radius:0.75rem;
@@ -175,10 +224,11 @@ html,body{
 
 .btn.primary{
   background:linear-gradient(90deg,var(--accent),var(--accent-strong));
-  color: #042027;
+  color:#042027;
   border:none;
 }
 
+/* icon style – useful if you still use it elsewhere */
 .icon-btn{
   padding:0.5rem;
   font-size:1.05rem;
@@ -189,7 +239,10 @@ html,body{
   min-width:44px;
 }
 
-/* status bar */
+/* =========================
+   STATUS BAR
+   ========================= */
+
 .status-bar{
   margin-top:0.9rem;
   padding:0.55rem 0.75rem;
@@ -201,7 +254,10 @@ html,body{
   border:1px solid var(--card-border);
 }
 
-/* tabs */
+/* =========================
+   TABS
+   ========================= */
+
 .tabs{
   margin-top:0.85rem;
   display:flex;
@@ -226,8 +282,12 @@ html,body{
 
 .tab.active{
   background:linear-gradient(90deg,var(--accent),var(--accent-strong));
-  color: #042027;
+  color:#042027;
 }
+
+/* =========================
+   SECTIONS & GRID
+   ========================= */
 
 .section{
   margin-top:1.25rem;
@@ -256,7 +316,10 @@ html,body{
   .grid{ grid-template-columns:repeat(3,1fr); }
 }
 
-/* card style */
+/* =========================
+   CARD STYLES
+   ========================= */
+
 .card{
   background:var(--bg-elevated);
   border-radius:0.9rem;
@@ -320,14 +383,20 @@ html,body{
   border-radius:0.5rem;
 }
 
-/* footer */
+/* =========================
+   FOOTER
+   ========================= */
+
 .footer{
   margin:2rem auto 3rem auto;
   text-align:center;
   color:var(--muted);
 }
 
-/* utilities */
+/* =========================
+   UTILITIES & SKELETON
+   ========================= */
+
 .hidden{ display:none; }
 .italic{ font-style:italic; color:var(--muted); }
 
