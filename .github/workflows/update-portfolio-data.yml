@@ -11,7 +11,7 @@ jobs:
   update:
     runs-on: ubuntu-latest
     env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
