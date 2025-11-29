@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+<title>Himel PVZ – Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="header">
+  <div class="profile">
+    
+    <div class="profile-avatar-wrapper">
+      <img id="avatar" class="profile-avatar" alt="" />
+    </div>
+
+    <div class="profile-info">
+      <h1 id="name">Loading...</h1>
+      <p id="username">@user</p>
+    </div>
+
+    <div class="profile-actions">
+      <a id="github-link" target="_blank">View on GitHub</a>
+      <button id="theme-toggle">🌙</button>
+      <button id="refresh-btn">↻ Refresh</button>
+    </div>
+
+    <div class="profile-stats">
+      <div class="profile-stat-item">
+        <h3 id="followers-count">0</h3>
+        <span>Followers</span>
+      </div>
+
+      <div class="profile-stat-item">
+        <h3 id="following-count">0</h3>
+        <span>Following</span>
+      </div>
+
+      <div class="profile-stat-item">
+        <h3 id="repo-count">0</h3>
+        <span>Public Repos</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<main class="main">
+  <!-- status bar -->
+  <section id="status" class="status status--info">
+    Loading profile and repositories from GitHub…
+  </section>
+
+  <!-- Tabs -->
+  <nav class="tabs">
+    <button class="tab tab--active" data-tab="repos">Repositories</button>
+    <button class="tab" data-tab="releases">Releases</button>
+  </nav>
+
+  <!-- Repositories tab -->
+  <section id="repos-section">
+    <h2 class="section-title">Repositories</h2>
+    <section
+      id="repo-grid"
+      class="repo-grid"
+      aria-live="polite">
+    </section>
+  </section>
+
+  <!-- Releases tab -->
+  <section id="releases-section" hidden>
+    <h2 class="section-title">Releases</h2>
+    <section
+      id="release-grid"
+      class="repo-grid"
+      aria-live="polite">
+    </section>
+  </section>
+</main>
+<footer class="footer">
+<p>
+Portfolio powered by GitHub · @himelpvz
+</p>
+</footer>
+
+<script src="app.js" defer></script>
+<script src="functions.js" defer></script>
+</body>
+</html>

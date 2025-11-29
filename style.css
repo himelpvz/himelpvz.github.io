@@ -1,0 +1,465 @@
+:root {
+  --bg: #050816;
+  --bg-elevated: #0f172a;
+  --bg-elevated-soft: #111827;
+  --accent: #38bdf8;
+  --accent-soft: rgba(56, 189, 248, 0.15);
+  --accent-strong: #0ea5e9;
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+  --border: #1f2937;
+  --danger: #f97373;
+  --radius-lg: 1.2rem;
+  --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.7);
+  --shadow-card: 0 16px 32px rgba(15, 23, 42, 0.85);
+  --transition-fast: 150ms ease-out;
+  --transition-med: 220ms ease-out;
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Segoe UI", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+/* Light theme overrides */
+:root[data-theme="light"] {
+  --bg: #f3f4f6;
+  --bg-elevated: #ffffff;
+  --bg-elevated-soft: #e5e7eb;
+  --accent: #0ea5e9;
+  --accent-soft: rgba(14, 165, 233, 0.12);
+  --accent-strong: #0284c7;
+  --text: #0f172a;
+  --muted: #6b7280;
+  --border: #d1d5db;
+  --danger: #b91c1c;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background: radial-gradient(circle at top, var(--bg-elevated) 0, var(--bg) 55%);
+  color: var(--text);
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+}
+/* Layout */
+/* ===========================
+   CLEAN PROFILE CARD
+   =========================== */
+.header {
+  margin-top: 1.4rem;
+  margin-bottom: 2.2rem;
+}
+.header {
+  max-width: 1080px;
+  margin: 0 auto 1.8rem auto;
+  padding: 2rem 1.5rem;
+  border-radius: 1.25rem;
+  background: var(--bg-elevated);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  box-shadow: 0 12px 26px rgba(15, 23, 42, 0.35);
+}
+
+/* layout changes */
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.4rem; /* more breathing room */
+  text-align: center;
+}
+
+/* avatar with smooth border */
+.profile-avatar-wrapper {
+  width: 90px;
+  height: 90px;
+  padding: 4px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.45);
+}
+
+.profile-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 999px;
+  object-fit: cover;
+  border: 2px solid var(--bg-elevated);
+}
+
+/* name + username */
+.profile-info h1 {
+  margin: 0;
+  font-size: 1.55rem;
+  font-weight: 700;
+}
+
+.profile-info p {
+  margin-top: 0.2rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* profile buttons */
+.profile-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 0.6rem;
+}
+
+/* fix icon buttons */
+.profile-actions button,
+.profile-actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 1.1rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+}
+
+/* stats section */
+.profile-stats {
+  display: flex;
+  gap: 2rem;
+  margin-top: 0.4rem;
+}
+
+.profile-stat-item {
+  text-align: center;
+}
+
+.profile-stat-item h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.profile-stat-item span {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+button {
+  padding: 0.55rem 1.1rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: radial-gradient(circle at top left, #38bdf8, #0ea5e9);
+  color: #020617;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  box-shadow: 0 10px 25px rgba(56, 189, 248, 0.45);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  transition: transform var(--transition-fast),
+    box-shadow var(--transition-fast), filter var(--transition-fast),
+    background-position var(--transition-fast);
+  background-size: 140% 140%;
+  background-position: 0% 0%;
+}
+
+button:hover {
+  transform: translateY(-1px) scale(1.01);
+  box-shadow: 0 18px 35px rgba(56, 189, 248, 0.6);
+  filter: brightness(1.08);
+  background-position: 100% 100%;
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 10px 20px rgba(56, 189, 248, 0.35);
+  filter: brightness(0.98);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: default;
+  box-shadow: none;
+  transform: none;
+}
+/* Theme toggle button */
+#theme-toggle {
+  min-width: 2.3rem;
+  padding-inline: 0.5rem;
+  font-size: 0.9rem;
+}
+
+/* Slightly separate the buttons */
+.profile-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+/* Main */
+
+.main {
+  max-width: 1080px;
+  margin: 0 auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.status {
+  padding: 0.8rem 1rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  background: rgba(15, 23, 42, 0.9);
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.status::before {
+  content: "";
+  display: inline-block;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+}
+
+.status--info::before {
+  background: var(--accent);
+}
+
+.status--error {
+  border-color: rgba(248, 113, 113, 0.9);
+  background: rgba(127, 29, 29, 0.4);
+  color: #fecaca;
+}
+
+.status--error::before {
+  background: var(--danger);
+}
+
+.status--success::before {
+  background: #4ade80;
+}
+
+.section-title {
+  margin: 0;
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Repo grid */
+
+./* Repo list */
+
+.repo-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.9rem;
+  padding-bottom: 1.5rem;
+}
+
+/* simpler, flat card */
+.repo-card {
+  border-radius: 1rem;
+  padding: 0.9rem 1rem 0.85rem;
+  background: var(--bg-elevated-soft);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  box-shadow: 0 8px 16px rgba(15, 23, 42, 0.55);
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  transition: transform 140ms ease-out, box-shadow 140ms ease-out,
+    border-color 140ms ease-out;
+}
+
+.repo-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 26px rgba(15, 23, 42, 0.7);
+  border-color: rgba(56, 189, 248, 0.6);
+}
+
+.repo-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.repo-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+}
+
+.repo-title a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.repo-title a:hover {
+  text-decoration: underline;
+}
+
+.repo-badge {
+  font-size: 0.7rem;
+  border-radius: 999px;
+  padding: 0.15rem 0.55rem;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.repo-desc {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* meta line under description */
+
+.repo-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.repo-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.22rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(55, 65, 81, 0.9);
+}
+
+.repo-meta-item strong {
+  font-weight: 500;
+  color: var(--text);
+}
+
+/* make releases cards use same style */
+#releases-section .repo-card {
+  border-style: solid;
+}
+/* Footer */
+
+.footer {
+  max-width: 1080px;
+  margin: auto;
+  margin-top: 0;
+  padding-top: 0.75rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+/* Responsiveness */
+
+@media (min-width: 640px) {
+  body {
+    padding: 1.5rem;
+  }
+
+  .header {
+    padding: 1.5rem 1.75rem 1.75rem;
+  }
+
+  .profile-avatar-wrapper {
+    width: 96px;
+    height: 96px;
+  }
+
+  .profile-main h1 {
+    font-size: 1.8rem;
+  }
+
+  .repo-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 960px) {
+  body {
+    padding: 1.75rem;
+  }
+
+  .profile {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+  }
+
+  .repo-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Tabs */
+
+.tabs {
+  margin-top: 0.5rem;
+  display: inline-flex;
+  gap: 0.4rem;
+  background: rgba(15, 23, 42, 0.9);
+  border-radius: 999px;
+  padding: 0.2rem;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  align-self: flex-start;
+}
+
+.tab {
+  border-radius: 999px;
+  padding: 0.35rem 0.9rem;
+  font-size: 0.8rem;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  background: transparent;
+  box-shadow: none;
+  color: var(--muted);
+}
+
+.tab:hover {
+  box-shadow: none;
+  filter: none;
+  transform: translateY(0);
+  background: rgba(15, 23, 42, 0.9);
+}
+
+.tab--active {
+  background: radial-gradient(circle at top left, #38bdf8, #0ea5e9);
+  color: #020617;
+  box-shadow: 0 10px 25px rgba(56, 189, 248, 0.55);
+}
+
+/* Releases grid re-uses .repo-grid and .repo-card styles */
+#releases-section .repo-card {
+  /* optional small change so releases look slightly different */
+  border-style: dashed;
+}
+:root[data-theme="dark"] .repo-card {
+  background: #020617;
+}
+
+:root[data-theme="light"] .repo-card {
+  background: #ffffff;
+}
