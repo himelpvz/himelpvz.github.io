@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-slate-50 text-gray-900 overflow-x-hidden transition-colors duration-300;
+    @apply bg-slate-50 text-gray-900 overflow-x-hidden transition-colors duration-500;
   }
   html.dark body {
     @apply bg-[#030014] text-white;
@@ -23,6 +23,9 @@
 }
 
 @layer components {
+  /* =========================================
+     DEFAULT (GLASSMORPHISM)
+     ========================================= */
   .glass-panel {
     @apply bg-white/70 backdrop-blur-md border border-black/5 shadow-[0_4px_30px_rgba(0,0,0,0.05)] transition-all duration-300;
   }
@@ -30,6 +33,233 @@
     @apply bg-[#0d0d19]/60 border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.1)];
   }
 
+  /* =========================================
+     MATERIAL UI 3 EXPRESSIVE (STRICT OVERRIDES)
+     ========================================= */
+  
+  /* 0. Global Colors & Selection */
+  [data-style="material"] ::selection {
+    @apply bg-[#d0bcff] text-[#381e72] !important;
+  }
+  [data-style="material"] .text-cyan-600,
+  [data-style="material"] .text-cyan-500,
+  [data-style="material"] .text-purple-600 {
+    @apply text-[#6750a4] dark:text-[#d0bcff] !important;
+  }
+  
+  /* 1. Surfaces & Backgrounds */
+  [data-style="material"] body {
+    @apply bg-[#fdfcff] dark:bg-[#1a1c1e] !important;
+  }
+  [data-style="material"] #app-background {
+    @apply opacity-0 !important;
+  }
+  [data-style="material"] footer {
+    @apply bg-[#fdfcff] dark:bg-[#1a1c1e] border-t border-[#cac4d0] dark:border-[#43474e] !important;
+  }
+  [data-style="material"] footer .glass-panel {
+    @apply bg-[#e7e0ec] dark:bg-[#363a40] text-[#1d1b20] dark:text-[#e6e1e5] border-none shadow-none !important;
+  }
+  
+  /* 2. Cards (Replacing Glass Panels) */
+  [data-style="material"] .glass-panel {
+    @apply bg-[#f3edf7] dark:bg-[#202429] border-none shadow-none rounded-[24px] backdrop-blur-0 opacity-100 !important;
+    /* M3 Elevation 1 */
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.3) !important;
+  }
+  [data-style="material"] .glass-panel .bg-white,
+  [data-style="material"] .glass-panel .bg-white\/50,
+  [data-style="material"] .glass-panel .dark\:bg-\[\#0a0a0f\] {
+     @apply bg-transparent !important;
+  }
+
+  [data-style="material"] .glass-panel:hover {
+     /* M3 Elevation 2 */
+     box-shadow: 0px 2px 6px 2px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.3) !important;
+     transform: translateY(-2px);
+  }
+
+  /* 3. Navigation Bar (Bottom) */
+  [data-style="material"] nav {
+    @apply pb-0 px-0 !important; /* Full width, no floating */
+  }
+  [data-style="material"] nav .container {
+    @apply max-w-full m-0 p-0 !important;
+  }
+  [data-style="material"] nav .glass-panel {
+    @apply bg-[#f3edf7] dark:bg-[#202429] rounded-none h-20 items-center justify-center gap-2 px-2 shadow-[0_-2px_10px_rgba(0,0,0,0.05)] !important;
+    border-top: 1px solid transparent;
+  }
+  
+  /* Nav Items (Pill Shape) */
+  [data-style="material"] nav a {
+    @apply rounded-full h-12 w-auto px-5 flex-row gap-2 !important;
+  }
+  [data-style="material"] nav a.active-nav {
+    @apply bg-[#e8def8] dark:bg-[#4a4458] text-[#1d1b20] dark:text-[#e8def8] !important;
+  }
+  [data-style="material"] nav a .nav-label {
+    @apply font-sans font-medium text-[11px] tracking-wide normal-case opacity-100 scale-100 translate-y-0 !important;
+    @apply text-[#49454f] dark:text-[#cac4d0];
+  }
+  [data-style="material"] nav a.active-nav .nav-label {
+    @apply font-bold text-[#1d1b20] dark:text-[#e8def8] !important;
+  }
+  [data-style="material"] nav a .nav-icon {
+    @apply text-[#49454f] dark:text-[#cac4d0] !important;
+  }
+  [data-style="material"] nav a.active-nav .nav-icon {
+    @apply text-[#1d1b20] dark:text-[#e8def8] scale-100 translate-y-0 drop-shadow-none !important;
+  }
+  [data-style="material"] nav a .nav-dot {
+    @apply hidden !important;
+  }
+  [data-style="material"] nav a .m3-hidden {
+    @apply hidden !important;
+  }
+
+  /* 4. Top Bar */
+  [data-style="material"] header {
+    @apply bg-[#fdfcff] dark:bg-[#1a1c1e] border-b-0 shadow-none py-2 !important;
+  }
+  [data-style="material"] header .glass-panel {
+    @apply bg-[#e7e0ec] dark:bg-[#363a40] shadow-md !important;
+  }
+
+  /* 5. Buttons (Stadium Shape) */
+  [data-style="material"] button:not(.nav-item),
+  [data-style="material"] .button-like {
+    @apply rounded-full shadow-none !important;
+  }
+  /* Primary Buttons */
+  [data-style="material"] button.bg-gray-900,
+  [data-style="material"] button.bg-gradient-to-r {
+    @apply bg-[#6750a4] dark:bg-[#d0bcff] text-white dark:text-[#381e72] shadow-none hover:shadow-md !important;
+  }
+  /* Secondary/Icon Buttons */
+  [data-style="material"] button.glass-panel,
+  [data-style="material"] a.glass-panel {
+    @apply bg-[#e7e0ec] dark:bg-[#363a40] text-[#1d1b20] dark:text-[#e6e1e5] rounded-full !important;
+  }
+  /* Device Action Buttons */
+  [data-style="material"] .device-action-btn {
+    @apply bg-[#e8def8] dark:bg-[#4a4458] text-[#1d1b20] dark:text-[#e8def8] border-none rounded-full font-sans tracking-normal shadow-sm hover:shadow-md !important;
+  }
+  
+  /* 6. Skills Chips */
+  [data-style="material"] .skill-card {
+    @apply bg-transparent border border-[#79747e] dark:border-[#938f99] shadow-none rounded-[8px] hover:bg-[#e8def8] dark:hover:bg-[#363a40] hover:border-transparent !important;
+    animation: none !important;
+  }
+  [data-style="material"] .skill-card .icon-box {
+    @apply bg-transparent text-[#1d1b20] dark:text-[#e6e1e5] !important;
+  }
+  [data-style="material"] .skill-card span {
+    @apply text-[#1d1b20] dark:text-[#e6e1e5] font-sans font-medium !important;
+  }
+  [data-style="material"] .skill-card .absolute {
+    @apply hidden !important; /* Hide glows */
+  }
+
+  /* 7. Inputs (Filled) */
+  [data-style="material"] input[type="text"], 
+  [data-style="material"] textarea {
+    @apply bg-[#e7e0ec] dark:bg-[#363a40] border-b border-[#49454f] dark:border-[#938f99] rounded-t-lg rounded-b-none border-t-0 border-x-0 focus:border-b-[2px] focus:border-[#6750a4] dark:focus:border-[#d0bcff] px-4 shadow-none !important;
+  }
+
+  /* 8. Releases / Terminal Card */
+  [data-style="material"] .terminal-card {
+    @apply bg-[#1a1c1e] rounded-[24px] border border-[#43474e] !important;
+  }
+  [data-style="material"] .terminal-header {
+    @apply bg-[#1a1c1e] border-b border-[#43474e] rounded-t-[24px] !important;
+  }
+
+  /* 9. Animated Dividers */
+  [data-style="material"] .divider-glow,
+  [data-style="material"] .divider-shuttle,
+  [data-style="material"] .divider-pulse {
+    @apply hidden !important;
+  }
+  [data-style="material"] .divider-line {
+    @apply opacity-100 bg-none bg-[#cac4d0] dark:bg-[#43474e] !important;
+  }
+  [data-style="material"] .divider-hub {
+    @apply bg-[#fdfcff] dark:bg-[#1a1c1e] !important;
+  }
+  [data-style="material"] .divider-diamond {
+     @apply border-[#cac4d0] dark:border-[#43474e] bg-transparent !important;
+  }
+
+  /* 10. Typography overrides for M3 */
+  [data-style="material"] h1, 
+  [data-style="material"] h2, 
+  [data-style="material"] h3 {
+    @apply font-sans tracking-normal !important;
+  }
+  [data-style="material"] .font-display {
+    @apply font-sans !important;
+  }
+  [data-style="material"] .text-gradient {
+    @apply text-[#1d1b20] dark:text-[#e6e1e5] !important;
+    background: none !important;
+    -webkit-text-fill-color: inherit !important;
+  }
+
+
+  /* =========================================
+     NEOMORPHISM
+     ========================================= */
+  [data-style="neomorphism"] body {
+    @apply bg-[#e0e5ec];
+  }
+  html.dark [data-style="neomorphism"] body {
+    @apply bg-[#212121];
+  }
+  [data-style="neomorphism"] #app-background {
+    @apply opacity-0;
+  }
+  
+  [data-style="neomorphism"] .glass-panel {
+    @apply bg-[#e0e5ec] border-0 backdrop-blur-0 rounded-[20px] opacity-100;
+    box-shadow: 9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px rgba(255,255,255, 0.5);
+  }
+  html.dark [data-style="neomorphism"] .glass-panel {
+    @apply bg-[#212121] border-0;
+    box-shadow: 6px 6px 12px #151515, -6px -6px 12px #2d2d2d;
+  }
+
+  [data-style="neomorphism"] button,
+  [data-style="neomorphism"] a.glass-panel {
+    @apply active:shadow-[inset_4px_4px_8px_rgba(0,0,0,0.1),inset_-4px_-4px_8px_rgba(255,255,255,0.1)] transition-shadow duration-200 transform-none;
+  }
+  
+  /* =========================================
+     NEOBRUTALISM
+     ========================================= */
+  [data-style="neobrutalism"] .glass-panel {
+    @apply bg-white border-2 border-black rounded-none shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] backdrop-blur-0 opacity-100;
+  }
+  html.dark [data-style="neobrutalism"] .glass-panel {
+    @apply bg-[#1a1a1a] border-white shadow-[4px_4px_0px_0px_rgba(255,255,255,1)];
+  }
+  [data-style="neobrutalism"] .rounded-xl,
+  [data-style="neobrutalism"] .rounded-2xl,
+  [data-style="neobrutalism"] .rounded-full,
+  [data-style="neobrutalism"] .rounded-lg {
+    @apply rounded-none;
+  }
+  [data-style="neobrutalism"] button:active {
+    @apply translate-x-[2px] translate-y-[2px] shadow-none;
+  }
+  [data-style="neobrutalism"] #app-background {
+    @apply opacity-100; /* Keep background for contrast */
+  }
+
+
+  /* =========================================
+     UTILITIES
+     ========================================= */
   .glass-card:hover {
     @apply border-cyan-500/50 shadow-[0_0_15px_rgba(6,182,212,0.2)];
   }
@@ -52,6 +282,12 @@
      max-width: 65ch;
      font-size: 1rem;
      line-height: 1.75;
+  }
+  
+  /* Material Ripple Simulation */
+  .ripple-effect {
+    position: relative;
+    overflow: hidden;
   }
 }
 
