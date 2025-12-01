@@ -17,7 +17,12 @@ import {
   Zap,
   Sun,
   Moon,
-  Home
+  Home,
+  MoreVertical,
+  Palette,
+  Box,
+  Square,
+  Layout
 } from 'lucide-react';
 
 export const Icons = {
@@ -39,5 +44,10 @@ export const Icons = {
   Zap,
   Sun,
   Moon,
-  Home
+  Home,
+  MoreVertical,
+  Palette,
+  Box,
+  Square,
+  Layout
 };
