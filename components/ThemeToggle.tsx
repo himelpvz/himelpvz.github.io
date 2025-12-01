@@ -33,11 +33,10 @@ const ThemeToggle: React.FC = () => {
   return (
     <button 
       onClick={toggleTheme}
-      className="p-2 rounded-lg bg-black/5 hover:bg-black/10 dark:bg-white/10 dark:hover:bg-white/20 transition-all text-gray-600 dark:text-gray-200"
+      className="w-10 h-10 rounded-xl flex items-center justify-center bg-gray-100 dark:bg-white/5 hover:bg-gray-200 dark:hover:bg-white/10 transition-all text-gray-600 dark:text-gray-200 active:scale-90"
       aria-label="Toggle Theme"
-      title={theme === 'dark' ? 'Switch to Day Mode' : 'Switch to Night Mode'}
     >
-      {theme === 'dark' ? <Icons.Sun size={20} /> : <Icons.Moon size={20} />}
+      {theme === 'dark' ? <Icons.Sun size={20} className="text-yellow-400" /> : <Icons.Moon size={20} className="text-purple-600" />}
     </button>
   );
 };

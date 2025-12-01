@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Background from './components/Background';
+import TopBar from './components/TopBar';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import SplashScreen from './components/SplashScreen';
@@ -30,9 +31,11 @@ const App: React.FC = () => {
       <ScrollToTop />
       <div className="min-h-screen selection:bg-cyan-500/30 selection:text-cyan-900 dark:selection:text-cyan-100 flex flex-col">
         <Background />
-        <Navbar />
         
-        <main className="flex-1 flex flex-col">
+        {/* Android Style App Structure */}
+        <TopBar />
+        
+        <main className="flex-1 flex flex-col pt-20 pb-32">
            <Routes>
              <Route path="/" element={<Home />} />
              <Route path="/skills" element={<SkillsPage />} />
@@ -42,7 +45,7 @@ const App: React.FC = () => {
            </Routes>
         </main>
 
-        <Footer />
+        <Navbar />
       </div>
     </Router>
   );

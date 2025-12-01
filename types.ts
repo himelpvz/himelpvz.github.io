@@ -32,9 +32,9 @@ export interface DeviceInfo {
 
 export enum Section {
   HOME = 'home',
-  ABOUT = 'about',
   DEVICES = 'devices',
   PROJECTS = 'projects',
+  SKILLS = 'skills',
   CONTACT = 'contact'
 }
 
@@ -42,7 +42,7 @@ export interface BlogPost {
   id: string;
   title: string;
   excerpt: string;
-  content: string; // Markdown
+  content: string;
   coverImage: string;
   date: string;
   tags: string[];
@@ -51,7 +51,4 @@ export interface BlogPost {
   dislikes: number;
 }
 
-export interface BlogReaction {
-  postId: string;
-  type: 'like' | 'dislike' | null;
-}
+export type BlogReaction = 'like' | 'dislike' | null;

@@ -16,7 +16,8 @@ import {
   HardDrive,
   Zap,
   Sun,
-  Moon
+  Moon,
+  Home
 } from 'lucide-react';
 
 export const Icons = {
@@ -37,5 +38,6 @@ export const Icons = {
   HardDrive,
   Zap,
   Sun,
-  Moon
+  Moon,
+  Home
 };

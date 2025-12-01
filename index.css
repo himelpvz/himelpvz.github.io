@@ -9,6 +9,17 @@
   html.dark body {
     @apply bg-[#030014] text-white;
   }
+  
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  body::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  body {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
 }
 
 @layer components {
@@ -44,20 +55,6 @@
   }
 }
 
-/* Markdown Content Styles */
-.markdown-content h1 { @apply text-4xl font-bold mb-4 mt-8 leading-tight; }
-.markdown-content h2 { @apply text-3xl font-semibold mb-4 mt-8; }
-.markdown-content h3 { @apply text-2xl font-semibold mb-3 mt-6; }
-.markdown-content p { @apply mb-5; }
-.markdown-content ul { @apply list-disc pl-6 mb-5; }
-.markdown-content ol { @apply list-decimal pl-6 mb-5; }
-.markdown-content li { @apply mb-1; }
-.markdown-content code { @apply bg-black/10 dark:bg-white/10 px-1.5 py-0.5 rounded font-mono text-sm text-pink-600 dark:text-pink-400; }
-.markdown-content pre { @apply bg-[#1e1e1e] p-4 rounded-lg overflow-x-auto mb-6; }
-.markdown-content pre code { @apply bg-transparent text-[#d4d4d4] p-0 text-sm; }
-.markdown-content blockquote { @apply border-l-4 border-cyan-500 pl-4 italic text-gray-500 dark:text-gray-400; }
-.markdown-content img { @apply rounded-lg my-6 w-full; }
-
 /* Animations */
 @keyframes type {
   0% { width: 0; }
@@ -69,18 +66,15 @@
   50% { border-color: #00f3ff; }
 }
 
-@keyframes glitch {
-  0% { transform: translate(0); }
-  20% { transform: translate(-2px, 2px); }
-  40% { transform: translate(-2px, -2px); }
-  60% { transform: translate(2px, 2px); }
-  80% { transform: translate(2px, -2px); }
-  100% { transform: translate(0); }
-}
-
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
+}
+
+@keyframes text-shimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .animate-typewriter {
@@ -90,12 +84,13 @@
   animation: type 3.5s steps(40, end), blink 0.75s step-end infinite;
 }
 
-.animate-glitch:hover {
-  animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
-}
-
 .animate-float {
   animation: float 6s ease-in-out infinite;
+}
+
+.animate-text-gradient {
+  background-size: 200% auto;
+  animation: text-shimmer 4s linear infinite;
 }
 
 /* Splash Screen */
@@ -121,28 +116,4 @@
 @keyframes loading {
   0% { width: 0%; }
   100% { width: 100%; }
-}
-
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: #f1f5f9;
-}
-html.dark ::-webkit-scrollbar-track {
-  background: #030014;
-}
-::-webkit-scrollbar-thumb {
-  background: #94a3b8;
-  border-radius: 4px;
-}
-html.dark ::-webkit-scrollbar-thumb {
-  background: #1f2937;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #64748b;
-}
-html.dark ::-webkit-scrollbar-thumb:hover {
-  background: #374151;
 }
