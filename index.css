@@ -39,171 +39,371 @@
   
   /* 0. Global Colors & Selection */
   [data-style="material"] ::selection {
-    @apply bg-[#d0bcff] text-[#381e72] !important;
+    background-color: #d0bcff !important;
+    color: #381e72 !important;
   }
   [data-style="material"] .text-cyan-600,
   [data-style="material"] .text-cyan-500,
   [data-style="material"] .text-purple-600 {
-    @apply text-[#6750a4] dark:text-[#d0bcff] !important;
+    color: #6750a4 !important;
+  }
+  html.dark [data-style="material"] .text-cyan-600,
+  html.dark [data-style="material"] .text-cyan-500,
+  html.dark [data-style="material"] .text-purple-600 {
+    color: #d0bcff !important;
   }
   
   /* 1. Surfaces & Backgrounds */
   [data-style="material"] body {
-    @apply bg-[#fdfcff] dark:bg-[#1a1c1e] !important;
+    background-color: #fdfcff !important;
   }
+  html.dark [data-style="material"] body {
+    background-color: #1a1c1e !important;
+  }
+
   [data-style="material"] #app-background {
-    @apply opacity-0 !important;
+    opacity: 0 !important;
   }
+  
   [data-style="material"] footer {
-    @apply bg-[#fdfcff] dark:bg-[#1a1c1e] border-t border-[#cac4d0] dark:border-[#43474e] !important;
+    background-color: #fdfcff !important;
+    border-top: 1px solid #cac4d0 !important;
   }
+  html.dark [data-style="material"] footer {
+    background-color: #1a1c1e !important;
+    border-top: 1px solid #43474e !important;
+  }
+
   [data-style="material"] footer .glass-panel {
-    @apply bg-[#e7e0ec] dark:bg-[#363a40] text-[#1d1b20] dark:text-[#e6e1e5] border-none shadow-none !important;
+    background-color: #e7e0ec !important;
+    color: #1d1b20 !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  html.dark [data-style="material"] footer .glass-panel {
+    background-color: #363a40 !important;
+    color: #e6e1e5 !important;
   }
   
   /* 2. Cards (Replacing Glass Panels) */
   [data-style="material"] .glass-panel {
-    @apply bg-[#f3edf7] dark:bg-[#202429] border-none shadow-none rounded-[24px] backdrop-blur-0 opacity-100 !important;
-    /* M3 Elevation 1 */
-    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.3) !important;
+    background-color: #f3edf7 !important;
+    border: none !important;
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.3) !important; /* M3 Elevation 1 */
+    border-radius: 24px !important;
+    backdrop-filter: none !important;
+    opacity: 1 !important;
   }
+  html.dark [data-style="material"] .glass-panel {
+    background-color: #202429 !important;
+  }
+
+  /* Reset inner backgrounds for cleaner look in Material */
   [data-style="material"] .glass-panel .bg-white,
   [data-style="material"] .glass-panel .bg-white\/50,
-  [data-style="material"] .glass-panel .dark\:bg-\[\#0a0a0f\] {
-     @apply bg-transparent !important;
+  [data-style="material"] .glass-panel .dark\:bg-\[\#0a0a0f\],
+  [data-style="material"] .glass-panel .dark\:bg-\[\#0a0a0f\]\/40 {
+     background-color: transparent !important;
   }
 
   [data-style="material"] .glass-panel:hover {
-     /* M3 Elevation 2 */
-     box-shadow: 0px 2px 6px 2px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.3) !important;
+     box-shadow: 0px 2px 6px 2px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.3) !important; /* M3 Elevation 2 */
      transform: translateY(-2px);
   }
 
   /* 3. Navigation Bar (Bottom) */
   [data-style="material"] nav {
-    @apply pb-0 px-0 !important; /* Full width, no floating */
+    padding-bottom: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
   [data-style="material"] nav .container {
-    @apply max-w-full m-0 p-0 !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
   [data-style="material"] nav .glass-panel {
-    @apply bg-[#f3edf7] dark:bg-[#202429] rounded-none h-20 items-center justify-center gap-2 px-2 shadow-[0_-2px_10px_rgba(0,0,0,0.05)] !important;
-    border-top: 1px solid transparent;
+    background-color: #f3edf7 !important;
+    border-radius: 0 !important;
+    height: 80px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.05) !important;
+    border-top: 1px solid transparent !important;
+  }
+  html.dark [data-style="material"] nav .glass-panel {
+    background-color: #202429 !important;
   }
   
   /* Nav Items (Pill Shape) */
   [data-style="material"] nav a {
-    @apply rounded-full h-12 w-auto px-5 flex-row gap-2 !important;
+    border-radius: 9999px !important;
+    height: 48px !important;
+    width: auto !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    flex-direction: row !important;
+    gap: 8px !important;
   }
   [data-style="material"] nav a.active-nav {
-    @apply bg-[#e8def8] dark:bg-[#4a4458] text-[#1d1b20] dark:text-[#e8def8] !important;
+    background-color: #e8def8 !important;
+    color: #1d1b20 !important;
   }
+  html.dark [data-style="material"] nav a.active-nav {
+    background-color: #4a4458 !important;
+    color: #e8def8 !important;
+  }
+
   [data-style="material"] nav a .nav-label {
-    @apply font-sans font-medium text-[11px] tracking-wide normal-case opacity-100 scale-100 translate-y-0 !important;
-    @apply text-[#49454f] dark:text-[#cac4d0];
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 500 !important;
+    font-size: 11px !important;
+    letter-spacing: 0.05em !important;
+    text-transform: none !important;
+    opacity: 1 !important;
+    transform: scale(1) translateY(0) !important;
+    color: #49454f !important;
   }
+  html.dark [data-style="material"] nav a .nav-label {
+    color: #cac4d0 !important;
+  }
+
   [data-style="material"] nav a.active-nav .nav-label {
-    @apply font-bold text-[#1d1b20] dark:text-[#e8def8] !important;
+    font-weight: 700 !important;
+    color: #1d1b20 !important;
   }
+  html.dark [data-style="material"] nav a.active-nav .nav-label {
+    color: #e8def8 !important;
+  }
+
   [data-style="material"] nav a .nav-icon {
-    @apply text-[#49454f] dark:text-[#cac4d0] !important;
+    color: #49454f !important;
   }
+  html.dark [data-style="material"] nav a .nav-icon {
+    color: #cac4d0 !important;
+  }
+
   [data-style="material"] nav a.active-nav .nav-icon {
-    @apply text-[#1d1b20] dark:text-[#e8def8] scale-100 translate-y-0 drop-shadow-none !important;
+    color: #1d1b20 !important;
+    transform: scale(1) translateY(0) !important;
+    filter: none !important;
   }
-  [data-style="material"] nav a .nav-dot {
-    @apply hidden !important;
+  html.dark [data-style="material"] nav a.active-nav .nav-icon {
+    color: #e8def8 !important;
   }
+
+  [data-style="material"] nav a .nav-dot,
   [data-style="material"] nav a .m3-hidden {
-    @apply hidden !important;
+    display: none !important;
   }
 
   /* 4. Top Bar */
   [data-style="material"] header {
-    @apply bg-[#fdfcff] dark:bg-[#1a1c1e] border-b-0 shadow-none py-2 !important;
+    background-color: #fdfcff !important;
+    border-bottom: 0 !important;
+    box-shadow: none !important;
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
   }
+  html.dark [data-style="material"] header {
+    background-color: #1a1c1e !important;
+  }
+
   [data-style="material"] header .glass-panel {
-    @apply bg-[#e7e0ec] dark:bg-[#363a40] shadow-md !important;
+    background-color: #e7e0ec !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+  }
+  html.dark [data-style="material"] header .glass-panel {
+    background-color: #363a40 !important;
   }
 
   /* 5. Buttons (Stadium Shape) */
   [data-style="material"] button:not(.nav-item),
   [data-style="material"] .button-like {
-    @apply rounded-full shadow-none !important;
+    border-radius: 9999px !important;
+    box-shadow: none !important;
   }
   /* Primary Buttons */
   [data-style="material"] button.bg-gray-900,
   [data-style="material"] button.bg-gradient-to-r {
-    @apply bg-[#6750a4] dark:bg-[#d0bcff] text-white dark:text-[#381e72] shadow-none hover:shadow-md !important;
+    background-color: #6750a4 !important;
+    color: white !important;
+    background-image: none !important;
   }
+  html.dark [data-style="material"] button.bg-gray-900,
+  html.dark [data-style="material"] button.bg-gradient-to-r {
+    background-color: #d0bcff !important;
+    color: #381e72 !important;
+  }
+  
+  [data-style="material"] button:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+  }
+
   /* Secondary/Icon Buttons */
   [data-style="material"] button.glass-panel,
   [data-style="material"] a.glass-panel {
-    @apply bg-[#e7e0ec] dark:bg-[#363a40] text-[#1d1b20] dark:text-[#e6e1e5] rounded-full !important;
+    background-color: #e7e0ec !important;
+    color: #1d1b20 !important;
+    border-radius: 9999px !important;
   }
+  html.dark [data-style="material"] button.glass-panel,
+  html.dark [data-style="material"] a.glass-panel {
+    background-color: #363a40 !important;
+    color: #e6e1e5 !important;
+  }
+
   /* Device Action Buttons */
   [data-style="material"] .device-action-btn {
-    @apply bg-[#e8def8] dark:bg-[#4a4458] text-[#1d1b20] dark:text-[#e8def8] border-none rounded-full font-sans tracking-normal shadow-sm hover:shadow-md !important;
+    background-color: #e8def8 !important;
+    color: #1d1b20 !important;
+    border: none !important;
+    border-radius: 9999px !important;
+    font-family: 'Inter', sans-serif !important;
+    letter-spacing: normal !important;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+  }
+  html.dark [data-style="material"] .device-action-btn {
+    background-color: #4a4458 !important;
+    color: #e8def8 !important;
   }
   
   /* 6. Skills Chips */
   [data-style="material"] .skill-card {
-    @apply bg-transparent border border-[#79747e] dark:border-[#938f99] shadow-none rounded-[8px] hover:bg-[#e8def8] dark:hover:bg-[#363a40] hover:border-transparent !important;
+    background-color: transparent !important;
+    border: 1px solid #79747e !important;
+    box-shadow: none !important;
+    border-radius: 8px !important;
     animation: none !important;
   }
+  html.dark [data-style="material"] .skill-card {
+    border-color: #938f99 !important;
+  }
+
+  [data-style="material"] .skill-card:hover {
+    background-color: #e8def8 !important;
+    border-color: transparent !important;
+  }
+  html.dark [data-style="material"] .skill-card:hover {
+    background-color: #363a40 !important;
+  }
+
   [data-style="material"] .skill-card .icon-box {
-    @apply bg-transparent text-[#1d1b20] dark:text-[#e6e1e5] !important;
+    background-color: transparent !important;
+    color: #1d1b20 !important;
   }
+  html.dark [data-style="material"] .skill-card .icon-box {
+    color: #e6e1e5 !important;
+  }
+
   [data-style="material"] .skill-card span {
-    @apply text-[#1d1b20] dark:text-[#e6e1e5] font-sans font-medium !important;
+    color: #1d1b20 !important;
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 500 !important;
   }
+  html.dark [data-style="material"] .skill-card span {
+    color: #e6e1e5 !important;
+  }
+
   [data-style="material"] .skill-card .absolute {
-    @apply hidden !important; /* Hide glows */
+    display: none !important; /* Hide glows */
   }
 
   /* 7. Inputs (Filled) */
   [data-style="material"] input[type="text"], 
   [data-style="material"] textarea {
-    @apply bg-[#e7e0ec] dark:bg-[#363a40] border-b border-[#49454f] dark:border-[#938f99] rounded-t-lg rounded-b-none border-t-0 border-x-0 focus:border-b-[2px] focus:border-[#6750a4] dark:focus:border-[#d0bcff] px-4 shadow-none !important;
+    background-color: #e7e0ec !important;
+    border-bottom: 1px solid #49454f !important;
+    border-top-left-radius: 0.5rem !important;
+    border-top-right-radius: 0.5rem !important;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border-top: 0 !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    box-shadow: none !important;
+  }
+  html.dark [data-style="material"] input[type="text"], 
+  html.dark [data-style="material"] textarea {
+    background-color: #363a40 !important;
+    border-bottom: 1px solid #938f99 !important;
+  }
+
+  [data-style="material"] input[type="text"]:focus,
+  [data-style="material"] textarea:focus {
+    border-bottom-width: 2px !important;
+    border-color: #6750a4 !important;
+  }
+  html.dark [data-style="material"] input[type="text"]:focus,
+  html.dark [data-style="material"] textarea:focus {
+    border-color: #d0bcff !important;
   }
 
   /* 8. Releases / Terminal Card */
   [data-style="material"] .terminal-card {
-    @apply bg-[#1a1c1e] rounded-[24px] border border-[#43474e] !important;
+    background-color: #1a1c1e !important;
+    border-radius: 24px !important;
+    border: 1px solid #43474e !important;
   }
   [data-style="material"] .terminal-header {
-    @apply bg-[#1a1c1e] border-b border-[#43474e] rounded-t-[24px] !important;
+    background-color: #1a1c1e !important;
+    border-bottom: 1px solid #43474e !important;
+    border-top-left-radius: 24px !important;
+    border-top-right-radius: 24px !important;
   }
 
   /* 9. Animated Dividers */
   [data-style="material"] .divider-glow,
   [data-style="material"] .divider-shuttle,
   [data-style="material"] .divider-pulse {
-    @apply hidden !important;
+    display: none !important;
   }
   [data-style="material"] .divider-line {
-    @apply opacity-100 bg-none bg-[#cac4d0] dark:bg-[#43474e] !important;
+    opacity: 1 !important;
+    background: none !important;
+    background-color: #cac4d0 !important;
   }
+  html.dark [data-style="material"] .divider-line {
+    background-color: #43474e !important;
+  }
+
   [data-style="material"] .divider-hub {
-    @apply bg-[#fdfcff] dark:bg-[#1a1c1e] !important;
+    background-color: #fdfcff !important;
   }
+  html.dark [data-style="material"] .divider-hub {
+    background-color: #1a1c1e !important;
+  }
+
   [data-style="material"] .divider-diamond {
-     @apply border-[#cac4d0] dark:border-[#43474e] bg-transparent !important;
+     border-color: #cac4d0 !important;
+     background-color: transparent !important;
+  }
+  html.dark [data-style="material"] .divider-diamond {
+     border-color: #43474e !important;
   }
 
   /* 10. Typography overrides for M3 */
   [data-style="material"] h1, 
   [data-style="material"] h2, 
-  [data-style="material"] h3 {
-    @apply font-sans tracking-normal !important;
-  }
+  [data-style="material"] h3,
   [data-style="material"] .font-display {
-    @apply font-sans !important;
+    font-family: 'Inter', sans-serif !important;
+    letter-spacing: normal !important;
   }
+  
   [data-style="material"] .text-gradient {
-    @apply text-[#1d1b20] dark:text-[#e6e1e5] !important;
+    color: #1d1b20 !important;
     background: none !important;
     -webkit-text-fill-color: inherit !important;
+  }
+  html.dark [data-style="material"] .text-gradient {
+    color: #e6e1e5 !important;
   }
 
 
