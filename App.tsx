@@ -35,7 +35,7 @@ const App: React.FC = () => {
         {/* Android Style App Structure */}
         <TopBar />
         
-        <main className="flex-1 flex flex-col pt-20 pb-32">
+        <main className="flex-1 flex flex-col pt-16 pb-32">
            <Routes>
              <Route path="/" element={<Home />} />
              <Route path="/skills" element={<SkillsPage />} />

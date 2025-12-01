@@ -134,8 +134,8 @@ const TerminalCycler = () => {
     {
       cmd: "neofetch",
       output: (
-        <div className="text-gray-300 pl-4 flex gap-4 animate-fade-in">
-           <div className="text-cyan-500 text-xs leading-tight select-none hidden sm:block font-bold">
+        <div className="text-gray-700 dark:text-gray-300 pl-4 flex gap-4 animate-fade-in">
+           <div className="text-cyan-600 dark:text-cyan-500 text-xs leading-tight select-none hidden sm:block font-bold">
              {`
   /\\
  /  \\
@@ -146,11 +146,11 @@ const TerminalCycler = () => {
              `}
            </div>
            <div className="text-xs">
-             <span className="text-cyan-500">OS</span>: Android 14 (AOSP)<br/>
-             <span className="text-cyan-500">Host</span>: Xiaomi Redmi Note 12<br/>
-             <span className="text-cyan-500">Kernel</span>: 4.19.x-perf<br/>
-             <span className="text-cyan-500">Uptime</span>: 24/7<br/>
-             <span className="text-cyan-500">Shell</span>: zsh 5.8
+             <span className="text-cyan-600 dark:text-cyan-500">OS</span>: Android 14 (AOSP)<br/>
+             <span className="text-cyan-600 dark:text-cyan-500">Host</span>: Xiaomi Redmi Note 12<br/>
+             <span className="text-cyan-600 dark:text-cyan-500">Kernel</span>: 4.19.x-perf<br/>
+             <span className="text-cyan-600 dark:text-cyan-500">Uptime</span>: 24/7<br/>
+             <span className="text-cyan-600 dark:text-cyan-500">Shell</span>: zsh 5.8
            </div>
         </div>
       )
@@ -158,34 +158,34 @@ const TerminalCycler = () => {
     {
       cmd: "mka recoveryimage",
       output: (
-        <div className="text-gray-400 pl-4 text-xs font-mono whitespace-pre-wrap animate-fade-in">
-          [ 88%] <span className="text-green-400">Compiling C object</span> kernel/sched/core.o<br/>
-          [ 92%] <span className="text-yellow-400">Linking static lib</span> lib/libart.a<br/>
-          [ 95%] <span className="text-cyan-400">Generating image</span> recovery.img<br/>
-          <span className="text-green-500">#### build completed successfully ####</span>
+        <div className="text-gray-600 dark:text-gray-400 pl-4 text-xs font-mono whitespace-pre-wrap animate-fade-in">
+          [ 88%] <span className="text-green-600 dark:text-green-400">Compiling C object</span> kernel/sched/core.o<br/>
+          [ 92%] <span className="text-yellow-600 dark:text-yellow-400">Linking static lib</span> lib/libart.a<br/>
+          [ 95%] <span className="text-cyan-600 dark:text-cyan-400">Generating image</span> recovery.img<br/>
+          <span className="text-green-600 dark:text-green-500">#### build completed successfully ####</span>
         </div>
       )
     },
     {
       cmd: "fastboot getvar all",
       output: (
-        <div className="text-gray-300 pl-4 text-xs font-mono animate-fade-in">
+        <div className="text-gray-700 dark:text-gray-300 pl-4 text-xs font-mono animate-fade-in">
           (bootloader) product: sunstone<br/>
           (bootloader) secure: no<br/>
           (bootloader) unlocked: yes<br/>
           (bootloader) battery-soc-ok: yes<br/>
-          <span className="text-gray-500">Finished. Total time: 0.002s</span>
+          <span className="text-gray-500 dark:text-gray-500">Finished. Total time: 0.002s</span>
         </div>
       )
     },
     {
       cmd: "git push origin sunstone",
       output: (
-        <div className="text-gray-300 pl-4 text-xs font-mono animate-fade-in">
+        <div className="text-gray-700 dark:text-gray-300 pl-4 text-xs font-mono animate-fade-in">
           Enumerating objects: 15, done.<br/>
           Counting objects: 100% (15/15), done.<br/>
           Writing objects: 100% (8/8), 1.24 KiB, done.<br/>
-          <span className="text-green-400">remote: Resolving deltas: 100% (4/4)</span><br/>
+          <span className="text-green-600 dark:text-green-400">remote: Resolving deltas: 100% (4/4)</span><br/>
           To github.com:himelpvz/device_xiaomi_sunstone.git
         </div>
       )
@@ -193,9 +193,9 @@ const TerminalCycler = () => {
     {
       cmd: "adb logcat | grep -i 'avb'",
       output: (
-        <div className="text-gray-500 pl-4 text-[10px] font-mono whitespace-nowrap overflow-hidden animate-fade-in">
+        <div className="text-gray-500 dark:text-gray-500 pl-4 text-[10px] font-mono whitespace-nowrap overflow-hidden animate-fade-in">
           I/init  (    1): [libfs_avb] returning 0<br/>
-          W/libc  (  520): [avb_slot_verify.c:452] <span className="text-yellow-500">Verification disabled</span><br/>
+          W/libc  (  520): [avb_slot_verify.c:452] <span className="text-yellow-600 dark:text-yellow-500">Verification disabled</span><br/>
           I/init  (    1): [libfs_avb] AVB 2.0 scrub<br/>
           D/AndroidRuntime( 1200): Shutting down VM
         </div>
@@ -225,10 +225,10 @@ const TerminalCycler = () => {
     <div className="font-mono text-sm space-y-3 min-h-[160px]">
       {/* Static Part */}
       <div className="flex gap-2">
-        <span className="text-green-400">➜</span>
-        <span className="text-cyan-400">whoami</span>
+        <span className="text-green-600 dark:text-green-400">➜</span>
+        <span className="text-cyan-600 dark:text-cyan-400">whoami</span>
       </div>
-      <div className="text-gray-300 pl-4 mb-4 border-l-2 border-gray-700">
+      <div className="text-gray-700 dark:text-gray-300 pl-4 mb-4 border-l-2 border-gray-300 dark:border-gray-700">
         Name: Himel Parvez<br/>
         Role: System Architect<br/>
         Target: sunstone
@@ -236,8 +236,8 @@ const TerminalCycler = () => {
 
       {/* Dynamic Part */}
       <div className="flex gap-2">
-        <span className="text-green-400">➜</span>
-        <span className="text-cyan-400">{currentScreen.cmd}</span>
+        <span className="text-green-600 dark:text-green-400">➜</span>
+        <span className="text-cyan-600 dark:text-cyan-400">{currentScreen.cmd}</span>
       </div>
       {currentScreen.output}
     </div>
@@ -310,14 +310,14 @@ const Hero: React.FC<HeroProps> = ({ githubStats }) => {
             </div>
           </div>
 
-          <div className="flex-1 relative w-full max-w-lg hidden md:block">
+          <div className="flex-1 relative w-full max-w-lg">
             {/* Holographic Card Effect */}
-            <div className="relative z-10 glass-panel p-6 rounded-2xl bg-[#0d0d19] dark:bg-opacity-100 border-gray-800 shadow-2xl overflow-hidden group hover:scale-[1.01] transition-transform duration-500">
+            <div className="relative z-10 glass-panel p-6 rounded-2xl bg-slate-50 dark:bg-[#0d0d19] dark:bg-opacity-100 border-gray-200 dark:border-gray-800 shadow-2xl overflow-hidden group hover:scale-[1.01] transition-transform duration-500">
                {/* Animated Scan Line */}
                <div className="absolute top-0 left-0 w-full h-1 bg-cyan-500/50 blur-sm animate-float opacity-50 pointer-events-none"></div>
 
                {/* Terminal Header */}
-               <div className="flex items-center gap-2 mb-4 border-b border-gray-700 pb-4">
+               <div className="flex items-center gap-2 mb-4 border-b border-gray-300 dark:border-gray-700 pb-4">
                  <div className="w-3 h-3 rounded-full bg-red-500"></div>
                  <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                  <div className="w-3 h-3 rounded-full bg-green-500"></div>
@@ -328,8 +328,8 @@ const Hero: React.FC<HeroProps> = ({ githubStats }) => {
                <TerminalCycler />
 
                {/* Decorative Elements */}
-               <div className="absolute -top-10 -right-10 w-32 h-32 bg-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
-               <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-cyan-500/20 rounded-full blur-3xl animate-pulse"></div>
+               <div className="absolute -top-10 -right-10 w-32 h-32 bg-purple-500/10 dark:bg-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
+               <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-cyan-500/10 dark:bg-cyan-500/20 rounded-full blur-3xl animate-pulse"></div>
             </div>
           </div>
         </div>
