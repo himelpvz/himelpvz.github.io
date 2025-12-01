@@ -69,14 +69,6 @@ const Devices: React.FC = () => {
                        >
                          Device Tree
                        </a>
-                       <a 
-                         href={`https://github.com/himelpvz/android_vendor_xiaomi_${device.codename}`}
-                         target="_blank"
-                         rel="noreferrer"
-                         className="flex-1 text-center bg-gray-100 hover:bg-gray-200 dark:bg-white/5 dark:hover:bg-white/10 border border-gray-200 dark:border-white/10 rounded-lg py-3 text-xs font-bold uppercase tracking-wide transition-colors text-gray-700 dark:text-gray-300 hover:text-cyan-600 dark:hover:text-cyan-400"
-                       >
-                         Vendor
-                       </a>
                     </div>
                   </div>
                 </div>
