@@ -2,7 +2,10 @@
 export default {
   content: [
     "./index.html",
-    "./**/*.{js,ts,jsx,tsx}",
+    "./*.{js,ts,jsx,tsx}",                // files in the project root
+    "./components/**/*.{js,ts,jsx,tsx}",  // components
+    "./pages/**/*.{js,ts,jsx,tsx}",       // pages
+    "./services/**/*.{js,ts,jsx,tsx}",    // services
   ],
   darkMode: 'class',
   theme: {
@@ -24,7 +27,7 @@ export default {
       animation: {
         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'float': 'float 6s ease-in-out infinite',
-        'glow': 'glow 2s ease-in-out infinite alternate',
+        'glow': 'glow 2s ease-in-out infinite',
         'fade-in': 'fadeIn 0.5s ease-out',
       },
       keyframes: {
