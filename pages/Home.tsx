@@ -1,25 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import Hero from '../components/Hero';
-import Devices from '../components/Devices';
-import GitHubSection from '../components/GitHubSection';
-import Skills from '../components/Skills';
-import { fetchProfile, fetchRepos, fallbackProfile } from '../services/githubService';
-import { GitHubUser, GitHubRepo } from '../types';
+import { fetchProfile, fallbackProfile } from '../services/githubService';
+import { GitHubUser } from '../types';
 
 const Home: React.FC = () => {
   const [user, setUser] = useState<GitHubUser | null>(null);
-  const [repos, setRepos] = useState<GitHubRepo[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const loadData = async () => {
       try {
-        const [userData, repoData] = await Promise.all([
-          fetchProfile(),
-          fetchRepos()
-        ]);
+        const userData = await fetchProfile();
         setUser(userData || fallbackProfile);
-        setRepos(repoData);
       } catch (e) {
         setUser(fallbackProfile);
       } finally {
@@ -44,17 +36,6 @@ const Home: React.FC = () => {
   return (
     <div className="flex flex-col gap-0 animate-fade-in">
       <Hero githubStats={user} />
-      
-      <Skills />
-      
-      {/* Animated Divider */}
-      <div className="my-10 h-px w-full bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent opacity-50"></div>
-      
-      <Devices />
-      
-      <div className="h-px w-full bg-gradient-to-r from-transparent via-purple-500/50 to-transparent opacity-50"></div>
-      
-      <GitHubSection repos={repos} />
     </div>
   );
 };

@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Background from './components/Background';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import SplashScreen from './components/SplashScreen';
 import Home from './pages/Home';
-import Blog from './pages/Blog';
-import BlogPost from './pages/BlogPost';
-import Admin from './pages/Admin';
+import SkillsPage from './pages/SkillsPage';
+import ProjectsPage from './pages/ProjectsPage';
+import ReleasesPage from './pages/ReleasesPage';
+import DevicesPage from './pages/DevicesPage';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -17,6 +19,12 @@ const ScrollToTop = () => {
 };
 
 const App: React.FC = () => {
+  const [showSplash, setShowSplash] = useState(true);
+
+  if (showSplash) {
+    return <SplashScreen onComplete={() => setShowSplash(false)} />;
+  }
+
   return (
     <Router>
       <ScrollToTop />
@@ -27,9 +35,10 @@ const App: React.FC = () => {
         <main className="flex-1 flex flex-col">
            <Routes>
              <Route path="/" element={<Home />} />
-             <Route path="/blog" element={<Blog />} />
-             <Route path="/blog/:id" element={<BlogPost />} />
-             <Route path="/admin" element={<Admin />} />
+             <Route path="/skills" element={<SkillsPage />} />
+             <Route path="/projects" element={<ProjectsPage />} />
+             <Route path="/releases" element={<ReleasesPage />} />
+             <Route path="/devices" element={<DevicesPage />} />
            </Routes>
         </main>
 

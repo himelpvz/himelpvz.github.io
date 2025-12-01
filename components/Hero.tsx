@@ -22,16 +22,19 @@ const Hero: React.FC<HeroProps> = ({ githubStats }) => {
 
             <h1 className="text-5xl md:text-7xl font-display font-bold leading-tight text-gray-900 dark:text-white">
               Himel <br />
-              <span className="text-gradient animate-glow">Parvez</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-600 animate-glitch cursor-default inline-block">
+                Parvez
+              </span>
             </h1>
 
             <div className="space-y-4">
-              <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 font-mono">
-                Android Developer <span className="text-purple-600 dark:text-purple-500">//</span> Device Tree Engineer
-              </p>
+              <div className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 font-mono flex flex-col md:flex-row gap-2 items-center justify-center lg:justify-start">
+                 <span className="text-purple-600 dark:text-purple-500">&gt;</span>
+                 <span className="animate-typewriter w-0">Android Developer & Engineer</span>
+              </div>
               <p className="text-gray-600 dark:text-gray-400 max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium dark:font-normal">
                 Specializing in AOSP development, TWRP porting, and Vendor blobs integration. 
-                Bringing life to <span className="text-gray-900 dark:text-white font-bold font-mono">sunstone</span>, <span className="text-gray-900 dark:text-white font-bold font-mono">moonstone</span>, and <span className="text-gray-900 dark:text-white font-bold font-mono">stone</span> devices.
+                Bringing life to <span className="text-gray-900 dark:text-white font-bold font-mono">sunstone</span>.
               </p>
             </div>
 
@@ -74,7 +77,10 @@ const Hero: React.FC<HeroProps> = ({ githubStats }) => {
 
           <div className="flex-1 relative w-full max-w-lg">
             {/* Holographic Card Effect */}
-            <div className="relative z-10 glass-panel p-6 rounded-2xl bg-[#0d0d19] dark:bg-opacity-100 border-gray-800 shadow-2xl">
+            <div className="relative z-10 glass-panel p-6 rounded-2xl bg-[#0d0d19] dark:bg-opacity-100 border-gray-800 shadow-2xl overflow-hidden group hover:scale-[1.01] transition-transform">
+               {/* Animated Scan Line */}
+               <div className="absolute top-0 left-0 w-full h-1 bg-cyan-500/50 blur-sm animate-float opacity-50 pointer-events-none"></div>
+
                {/* Terminal Header */}
                <div className="flex items-center gap-2 mb-4 border-b border-gray-700 pb-4">
                  <div className="w-3 h-3 rounded-full bg-red-500"></div>

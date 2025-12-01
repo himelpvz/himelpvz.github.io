@@ -20,6 +20,11 @@ The Redmi Note 12 5G (sunstone) presents some unique challenges when compiling r
 
 You can find the device tree in my GitHub repository. The structure is standard for Qualcomm devices, but pay attention to the \`BoardConfig.mk\` flags.
 
+| Flag | Value | Description |
+|------|-------|-------------|
+| \`TW_INCLUDE_CRYPTO\` | \`true\` | Enables encryption support |
+| \`TW_THEME\` | \`portrait_hdpi\` | Sets UI resolution |
+
 \`\`\`bash
 repo init -u https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-12.1
 repo sync
@@ -38,6 +43,10 @@ TW_INCLUDE_CRYPTO := true
 TW_INCLUDE_CRYPTO_FBE := true
 TW_INCLUDE_FBE_METADATA_DECRYPT := true
 \`\`\`
+
+- [x] Fix Decryption
+- [x] Fix Touch
+- [ ] Fix Vibration
 
 ## Conclusion
 
@@ -89,30 +98,49 @@ Stay safe and always backup your partitions!
   }
 ];
 
-// In a real app, this would be an API call.
-// Here we use localStorage to simulate persistence for the user demo.
+// Helper to get local storage posts
+const getLocalPosts = (): BlogPost[] => {
+  try {
+    const json = localStorage.getItem('blog_posts');
+    return json ? JSON.parse(json) : [];
+  } catch (e) {
+    return [];
+  }
+};
+
+const saveLocalPosts = (posts: BlogPost[]) => {
+  localStorage.setItem('blog_posts', JSON.stringify(posts));
+};
 
 export const getPosts = (): BlogPost[] => {
-  const localPostsJson = localStorage.getItem('blog_posts');
-  const localPosts = localPostsJson ? JSON.parse(localPostsJson) : [];
-  
-  // Merge initial posts with user created local posts
-  // We also need to apply stored reactions to the initial posts if they aren't in the object yet
+  const localPosts = getLocalPosts();
   const reactions = getReactions();
+  const deletedIds = getDeletedIds();
   
-  const allPosts = [...localPosts, ...INITIAL_POSTS];
+  const allPostsMap = new Map<string, BlogPost>();
+  
+  INITIAL_POSTS.forEach(p => {
+    if (!deletedIds.includes(p.id)) {
+      allPostsMap.set(p.id, p);
+    }
+  });
+  
+  localPosts.forEach(p => {
+    if (!deletedIds.includes(p.id)) {
+      allPostsMap.set(p.id, p);
+    }
+  });
+
+  const allPosts = Array.from(allPostsMap.values());
   
   return allPosts.map(post => {
-    // Apply dynamic like/dislike counts from local storage if simplified
-    // For this demo, we'll just return them as is, plus any reaction modifications
-    // (In a real backend, the backend serves the count. Here we cheat a bit for the UI)
     const postReactions = reactions[post.id] || { userReaction: null, deltaLikes: 0, deltaDislikes: 0 };
     return {
       ...post,
       likes: post.likes + (postReactions.deltaLikes || 0),
       dislikes: post.dislikes + (postReactions.deltaDislikes || 0)
     };
-  });
+  }).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 };
 
 export const getPostById = (id: string): BlogPost | undefined => {
@@ -126,22 +154,73 @@ export const createPost = (post: Omit<BlogPost, 'id' | 'date' | 'likes' | 'disli
     date: new Date().toISOString().split('T')[0],
     likes: 0,
     dislikes: 0,
-    author: 'Himel Parvez' // Hardcoded admin
+    author: 'Himel Parvez'
   };
 
-  const localPostsJson = localStorage.getItem('blog_posts');
-  const localPosts = localPostsJson ? JSON.parse(localPostsJson) : [];
-  
+  const localPosts = getLocalPosts();
   const updatedPosts = [newPost, ...localPosts];
-  localStorage.setItem('blog_posts', JSON.stringify(updatedPosts));
+  saveLocalPosts(updatedPosts);
   
   return newPost;
 };
 
-// Reactions System
-// We store: { [postId]: { type: 'like' | 'dislike' } } for the user
-// And we store a "delta" to simulate global counter updates locally
+export const updatePost = (id: string, postData: Partial<BlogPost>): BlogPost | null => {
+  const posts = getPosts();
+  const existingPost = posts.find(p => p.id === id);
+  
+  if (!existingPost) return null;
+  
+  const updatedPost = { ...existingPost, ...postData };
+  
+  // We need to save this to local storage. 
+  // If it was an initial post, it now becomes a local post (conceptually, to persist changes).
+  const localPosts = getLocalPosts();
+  const localIndex = localPosts.findIndex(p => p.id === id);
+  
+  if (localIndex >= 0) {
+    localPosts[localIndex] = updatedPost;
+  } else {
+    localPosts.push(updatedPost);
+  }
+  
+  saveLocalPosts(localPosts);
+  return updatedPost;
+};
 
+const getDeletedIds = (): string[] => {
+  try {
+    const json = localStorage.getItem('deleted_posts');
+    return json ? JSON.parse(json) : [];
+  } catch (e) {
+    return [];
+  }
+};
+
+export const deletePost = (id: string) => {
+  const localPosts = getLocalPosts();
+  const filteredLocal = localPosts.filter(p => p.id !== id);
+  saveLocalPosts(filteredLocal);
+  
+  const deletedIds = getDeletedIds();
+  if (!deletedIds.includes(id)) {
+    deletedIds.push(id);
+    localStorage.setItem('deleted_posts', JSON.stringify(deletedIds));
+  }
+};
+
+export const getBlogStats = () => {
+  const posts = getPosts();
+  const totalLikes = posts.reduce((acc, curr) => acc + curr.likes, 0);
+  const totalViews = posts.length * 125 + totalLikes * 5; // Fake view count algo
+  
+  return {
+    totalPosts: posts.length,
+    totalLikes,
+    totalViews
+  };
+};
+
+// Reactions System
 interface ReactionStorage {
   [postId: string]: {
     userReaction: 'like' | 'dislike' | null;
@@ -151,8 +230,12 @@ interface ReactionStorage {
 }
 
 const getReactions = (): ReactionStorage => {
-  const json = localStorage.getItem('blog_reactions');
-  return json ? JSON.parse(json) : {};
+  try {
+    const json = localStorage.getItem('blog_reactions');
+    return json ? JSON.parse(json) : {};
+  } catch (e) {
+    return {};
+  }
 };
 
 export const toggleReaction = (postId: string, type: 'like' | 'dislike') => {
@@ -160,16 +243,15 @@ export const toggleReaction = (postId: string, type: 'like' | 'dislike') => {
   const current = reactions[postId] || { userReaction: null, deltaLikes: 0, deltaDislikes: 0 };
   
   if (current.userReaction === type) {
-    // Remove reaction
+    // Toggle off
     if (type === 'like') current.deltaLikes--;
     if (type === 'dislike') current.deltaDislikes--;
     current.userReaction = null;
   } else {
-    // Remove old reaction if exists
+    // Switch or toggle on
     if (current.userReaction === 'like') current.deltaLikes--;
     if (current.userReaction === 'dislike') current.deltaDislikes--;
     
-    // Add new reaction
     if (type === 'like') current.deltaLikes++;
     if (type === 'dislike') current.deltaDislikes++;
     current.userReaction = type;

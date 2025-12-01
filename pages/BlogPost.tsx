@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { Icons } from '../components/Icons';
 import { getPostById, toggleReaction, getUserReaction } from '../services/blogService';
 import { BlogPost as BlogPostType } from '../types';
@@ -70,7 +71,7 @@ const BlogPost: React.FC = () => {
         {/* Main Content */}
         <div className="glass-panel p-6 md:p-10 rounded-2xl bg-white/50 dark:bg-[#0a0a0f]/50">
            <div className="markdown-content font-sans text-gray-800 dark:text-gray-200 leading-relaxed">
-             <ReactMarkdown>{post.content}</ReactMarkdown>
+             <ReactMarkdown remarkPlugins={[remarkGfm]}>{post.content}</ReactMarkdown>
            </div>
 
            {/* Reactions */}
