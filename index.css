@@ -411,49 +411,67 @@
      NEOMORPHISM
      ========================================= */
   [data-style="neomorphism"] body {
-    @apply bg-[#e0e5ec];
+    background-color: #e0e5ec;
   }
   html.dark [data-style="neomorphism"] body {
-    @apply bg-[#212121];
+    background-color: #212121;
   }
   [data-style="neomorphism"] #app-background {
-    @apply opacity-0;
+    opacity: 0;
   }
   
   [data-style="neomorphism"] .glass-panel {
-    @apply bg-[#e0e5ec] border-0 backdrop-blur-0 rounded-[20px] opacity-100;
+    background-color: #e0e5ec;
+    border: none;
+    backdrop-filter: none;
+    border-radius: 20px;
+    opacity: 1;
     box-shadow: 9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px rgba(255,255,255, 0.5);
   }
   html.dark [data-style="neomorphism"] .glass-panel {
-    @apply bg-[#212121] border-0;
+    background-color: #212121;
+    border: none;
     box-shadow: 6px 6px 12px #151515, -6px -6px 12px #2d2d2d;
   }
 
-  [data-style="neomorphism"] button,
-  [data-style="neomorphism"] a.glass-panel {
-    @apply active:shadow-[inset_4px_4px_8px_rgba(0,0,0,0.1),inset_-4px_-4px_8px_rgba(255,255,255,0.1)] transition-shadow duration-200 transform-none;
+  [data-style="neomorphism"] button:active,
+  [data-style="neomorphism"] a.glass-panel:active {
+    box-shadow: inset 4px 4px 8px rgba(0,0,0,0.1), inset -4px -4px 8px rgba(255,255,255,0.1);
+    transform: none;
+    transition: box-shadow 0.2s;
   }
   
   /* =========================================
      NEOBRUTALISM
      ========================================= */
   [data-style="neobrutalism"] .glass-panel {
-    @apply bg-white border-2 border-black rounded-none shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] backdrop-blur-0 opacity-100;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 0;
+    box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
+    backdrop-filter: none;
+    opacity: 1;
   }
   html.dark [data-style="neobrutalism"] .glass-panel {
-    @apply bg-[#1a1a1a] border-white shadow-[4px_4px_0px_0px_rgba(255,255,255,1)];
+    background-color: #1a1a1a;
+    border-color: white;
+    box-shadow: 4px 4px 0px 0px rgba(255,255,255,1);
   }
+
+  /* Clean up rounded corners for Brutalism */
   [data-style="neobrutalism"] .rounded-xl,
   [data-style="neobrutalism"] .rounded-2xl,
   [data-style="neobrutalism"] .rounded-full,
   [data-style="neobrutalism"] .rounded-lg {
-    @apply rounded-none;
+    border-radius: 0;
   }
+  
   [data-style="neobrutalism"] button:active {
-    @apply translate-x-[2px] translate-y-[2px] shadow-none;
+    transform: translate(2px, 2px);
+    box-shadow: none;
   }
   [data-style="neobrutalism"] #app-background {
-    @apply opacity-100; /* Keep background for contrast */
+    opacity: 1; /* Keep background for contrast */
   }
 
 
