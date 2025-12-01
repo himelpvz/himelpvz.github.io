@@ -1,46 +1,31 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Himelpvz | GitHub Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Himel Parvez | Android Developer</title>
+    <meta name="description" content="Portfolio of Himel Parvez - Android Developer, Device Tree Engineer, and Open Source Contributor." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
+    "react-router-dom": "https://aistudiocdn.com/react-router-dom@^7.9.6",
+    "react-markdown": "https://aistudiocdn.com/react-markdown@^10.1.0",
+    "vite": "https://aistudiocdn.com/vite@^7.2.6",
+    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.1"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
 </head>
-<body>
-
-    <header class="app-header">
-        <div class="logo">Portfolio</div>
-        <div class="controls">
-            <button id="refresh-btn" aria-label="Refresh Data">↻ Refresh</button>
-            <button id="theme-toggle" aria-label="Toggle Theme">☀/☾</button>
-        </div>
-    </header>
-
-    <main class="container">
-        <section id="profile-section" class="profile-card">
-            <div class="profile-loader">Loading Profile...</div>
-        </section>
-
-        <div id="status-bar" class="status-bar" aria-live="polite"></div>
-
-        <nav class="tabs-nav">
-            <button class="tab-btn active" data-tab="repos">Repositories</button>
-            <button class="tab-btn" data-tab="releases">Recent Releases</button>
-        </nav>
-
-        <section id="repos-grid" class="content-grid active" aria-live="polite">
-            </section>
-
-        <section id="releases-grid" class="content-grid hidden" aria-live="polite">
-            <div class="placeholder-msg">Select tab to load releases...</div>
-        </section>
-    </main>
-
-    <footer>
-        <p>Built for <a href="https://github.com/himelpvz" target="_blank">@himelpvz</a></p>
-    </footer>
-
-    <script src="functions.js"></script>
-    <script src="app.js"></script>
-</body>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
 </html>

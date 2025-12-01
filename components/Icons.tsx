@@ -1,0 +1,41 @@
+import React from 'react';
+import { 
+  Github, 
+  Smartphone, 
+  Cpu, 
+  Terminal, 
+  Layers, 
+  ExternalLink, 
+  GitBranch, 
+  Star, 
+  Code,
+  Mail,
+  Send,
+  MapPin,
+  Settings,
+  HardDrive,
+  Zap,
+  Sun,
+  Moon
+} from 'lucide-react';
+
+export const Icons = {
+  Github,
+  Smartphone,
+  Cpu,
+  Terminal,
+  Layers,
+  ExternalLink,
+  GitBranch,
+  Star,
+  Code,
+  Mail,
+  Telegram: Send,
+  Send,
+  Location: MapPin,
+  Settings,
+  HardDrive,
+  Zap,
+  Sun,
+  Moon
+};
